@@ -56,7 +56,7 @@ endmodule
 ```
 The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
-- Name `structs` which you are going as signal bundle in the module description without a postfix, for example
+- Name `structs` which you are going to use as a signal bundle without a postfix, for example
 ```verilog
 typedef struct packed {
      logic [63:0] cause; // cause of exception
@@ -64,14 +64,15 @@ typedef struct packed {
                          // address of LD/ST fault
      logic        valid;
 } exception;
-
-module A (
-    input exception ex_i
-);
-
-// ......
-endmodule
 ```
+    ```verilog
+    module A (
+        input exception ex_i
+    );
+    
+        // ......
+    endmodule
+    ```
 - On the other hand name `structs` which are used as types with a post-fix `_t`:
 ```verilog
 typedef struct packed {
@@ -79,23 +80,23 @@ typedef struct packed {
     priv_lvl_t   priv_lvl;
     logic  [7:0] address;
 } csr_addr_t;
-
-module A (
-    input logic [11:0] address_i
-);
-
-    csr_addr_t csr_addr;
-
-    assign csr_addr = csr_addr_t'(address_i);
-
-    always_comb begin
-        if (csr_addr.priv_lvl == U_MODE) begin
-            // do something fancy with this signal
-        end
-    end
-endmodule
-
 ```
+    ```verilog
+    module A (
+        input logic [11:0] address_i
+    );
+    
+        csr_addr_t csr_addr;
+    
+        assign csr_addr = csr_addr_t'(address_i);
+    
+        always_comb begin
+            if (csr_addr.priv_lvl == U_MODE) begin
+                // do something fancy with this signal
+            end
+        end
+    endmodule
+    ```
 ## Git Considerations
 
 - Do not push to master, if you want to add a feature do it in your branch
