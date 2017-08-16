@@ -38,14 +38,21 @@ endmodule
 ```
 - The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example:
 ```verilog
-always_comb
-begin
-    if (flush_i) begin
-        // do some stuff here
-    end else if (whatever_signal) begin
-        // do some other stuff
+module A (
+    input logic flush_i
+);
+
+    logic whatever_signal;
+
+    always_comb
+    begin
+        if (flush_i) begin
+            // do some stuff here
+        end else if (whatever_signal) begin
+            // do some other stuff
+        end
     end
-end
+endmodule
 ```
 The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
