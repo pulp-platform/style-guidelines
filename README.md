@@ -20,7 +20,7 @@
   // ------------------------------------
 ```
 - Put `begin` statements on the same level as the block qualifier, for example:
-```Verilog
+```verilog
 always_comb begin
     if (flush_i) begin
         // do some stuff here
@@ -30,7 +30,7 @@ always_comb begin
 end
 ```
 - The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example:
-```Verilog
+```verilog
 always_comb
 begin
     if (flush_i) begin
