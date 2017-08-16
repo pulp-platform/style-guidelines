@@ -2,8 +2,9 @@
 
 ## Coding Style
 
+- If the existing coding style is sane - keep to it.
 - Keep the files tidy. No superfluous line breaks, align ports on a common boundary.
-- Don't use tabs, use spaces.
+- Don't use tabs, use spaces. If you really want to use tabs then use them consistently.
 - Use 4 spaces to open a new indentation level.
 - All signal and module names should be lower case with underscores as whitespace replacements (e.g.: `fetch_busy`).
 - Instantiation of modules should be prefix with `i_`, e.g.: `i_prefetcher`
@@ -18,6 +19,28 @@
   // CSR - Control and Status Registers
   // ------------------------------------
 ```
+- Put `begin` statements on the same level as the block qualifier, for example:
+```Verilog
+always_comb begin
+    if (flush_i) begin
+        // do some stuff here
+    end else if (whatever_signal) begin
+        // do some other stuff
+    end
+end
+```
+- The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example:
+```Verilog
+always_comb
+begin
+    if (flush_i) begin
+        // do some stuff here
+    end else if (whatever_signal) begin
+        // do some other stuff
+    end
+end
+```
+The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 
 ## Git Considerations
 
