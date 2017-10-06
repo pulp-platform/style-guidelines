@@ -64,14 +64,14 @@ endmodule
 ```
 - For `case`, always use `begin` and `end` and follow the K&R style:
 ```verilog
-case (foo_i)
-    8'h0 : begin
-        // case 0
-    end
-    8'h1 : begin
-        // case 1
-    end
-endcase
+    case (foo_i)
+        8'h0 : begin
+            // case 0
+        end
+        8'h1 : begin
+            // case 1
+        end
+    endcase
 ```
 - For `if`-`else` chains, use K&R style:
 ```verilog
@@ -95,26 +95,26 @@ As a variant, you can also put the end on its own line:
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
 -  Name `structs` which are used as types with a post-fix `_t`:
 ```verilog
-typedef struct packed {
-    logic [1:0]  rw;
-    priv_lvl_t   priv_lvl;
-    logic  [7:0] address;
-} csr_addr_t;
+    typedef struct packed {
+        logic [1:0]  rw;
+        priv_lvl_t   priv_lvl;
+        logic  [7:0] address;
+    } csr_addr_t;
 ```
 - always name control blocks within a `generate`:
 ```verilog
-generate
-    for (genvar i=0; i<10; i++) begin : ten_times_gen
-        // something to generate 10x
-    end // ten_times_gen
+    generate
+        for (genvar i=0; i<10; i++) begin : ten_times_gen
+            // something to generate 10x
+        end // ten_times_gen
 
-    if (PARAM == 0) begin : no_param_gen
-        // something
-    end // no_param_gen
-    else begin : param_gen
-        // something else
-    end // param_gen
-endgenerate
+        if (PARAM == 0) begin : no_param_gen
+            // something
+        end // no_param_gen
+        else begin : param_gen
+            // something else
+        end // param_gen
+    endgenerate
 ```
 <!--     ```verilog
     module A (
