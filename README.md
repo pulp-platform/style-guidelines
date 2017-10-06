@@ -1,6 +1,6 @@
 # Styleguides
 
-## TL;TR - Absolute Minimum
+## TL;DR - Absolute Minimum
 
 - If the existing coding style is sane, stick to it.
 - Avoid `defines` and `ifdefs` as much as possible.
