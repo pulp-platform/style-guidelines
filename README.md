@@ -66,13 +66,13 @@ endmodule
 The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
 -  Name `structs` which are used as types with a post-fix `_t`:
-```verilog
-typedef struct packed {
-    logic [1:0]  rw;
-    priv_lvl_t   priv_lvl;
-    logic  [7:0] address;
-} csr_addr_t;
-```
+    ```verilog
+    typedef struct packed {
+        logic [1:0]  rw;
+        priv_lvl_t   priv_lvl;
+        logic  [7:0] address;
+    } csr_addr_t;
+    ```
     ```verilog
     module A (
         input logic [11:0] address_i
