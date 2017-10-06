@@ -6,12 +6,11 @@
 - Avoid `defines` and `ifdefs` as much as possible.
 - Do not use tabs, use spaces.
 - Use 4 spaces to open a new indentation level.
-- All signal and module names should be lower case with underscores as whitespace replacements (e.g.: `fetch_busy`).
+- Names of signals, modules, and structs should be lower case with underscores as whitespace replacements (e.g.: `fetch_busy`). Names of constants and parameters should be upper case with underscores. Never use CamelCase.
 - Instantiation of modules should be prefixed with `i_`, e.g.: `i_prefetcher`.
 - For port definitions keep a post-fix direction (`_o`, `_i`).
 - For active low signals put an additional (`_no`, `_ni`).
 - Denote output of ff with `_q` (output of ff) and the input with `_n` (next) or alternatively `_p` (present) and `_n` (next).
-- Do not use CamelCase!
 
 ## Coding Style
 
