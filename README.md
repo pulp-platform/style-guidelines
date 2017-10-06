@@ -1,24 +1,32 @@
 # Styleguides
 
-## Coding Style
+## TL;TR - Absolute Minimum
 
-- If the existing coding style is sane - keep to it.
-- Keep the files tidy. No superfluous line breaks, align ports on a common boundary.
-- Don't use tabs, use spaces. If you really want to use tabs then use them consistently.
+- If the existing coding style is sane - stick to it.
+- Avoid `defines` and `ifdefs` as much as possible.
+- Don't use tabs, use spaces.
 - Use 4 spaces to open a new indentation level.
 - All signal and module names should be lower case with underscores as whitespace replacements (e.g.: `fetch_busy`).
 - Instantiation of modules should be prefix with `i_`, e.g.: `i_prefetcher`
 - For port definitions keep a post-fix direction (`_o`, `_i`).
 - For active low signals put an additional (`_no`, `_ni`).
-- Denote output of ff with `_q` and the input with `_n`.
-- Name dedicated signals wiring `module A` (output) with `module B` (input) `signal_a_b`
+- Denote output of ff with `_q` (output of ff) and the input with `_n` (next) or alternatively `_p` (present) and `_n` (next).
 - Do not use CamelCase!
-- Do not put overly large comment headers. Nevertheless, try to structure your HDL code, e.g.:
+
+## Coding Style
+
+- Keep the files tidy. No superfluous line breaks, align ports on a common boundary.
+- Don't use tabs, use spaces. If you really want to use tabs then use them consistently.
+- Name dedicated signals wiring `module A` (output) with `module B` (input) `signal_a_b`
+- Within an IP, use Interfaces to connect component instances whenever possible.
+- Use Interfaces at the top-level interface of the IP, but also provide a wrapper that “unrolls” the Interfaces into input and output ports.
+- Do not put overly larsge comment headers. Nevertheless, try to structure your HDL code, e.g.:
 ```
   // ------------------------------------
   // CSR - Control and Status Registers
   // ------------------------------------
 ```
+- Specify memory map and integration rules while coding, using the `crazy88` (TODO: Link to Documentation) syntax
 - Put `begin` statements on the same level as the block qualifier, for example:
 ```verilog
 module A (
@@ -36,7 +44,7 @@ module A (
     end
 endmodule
 ```
-- The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example:
+- The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example (K&R):
 ```verilog
 module A (
     input logic flush_i
@@ -54,26 +62,11 @@ module A (
     end
 endmodule
 ```
+> The rational is that extra lines for `begin/else/end` carry no information at all. They even may prevent parts of the code to not have enough space on some screens. Process blocks on the other hand are more self-contained and multiple process blocks are not required to be visible at the same time.
+
 The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
-- Name `structs` which you are going to use as a signal bundle without a postfix, for example
-```verilog
-typedef struct packed {
-     logic [63:0] cause; // cause of exception
-     logic [63:0] tval;  // additional information of causing exception (e.g.: instruction causing it),
-                         // address of LD/ST fault
-     logic        valid;
-} exception;
-```
-    ```verilog
-    module A (
-        input exception ex_i
-    );
-    
-        // ......
-    endmodule
-    ```
-- On the other hand name `structs` which are used as types with a post-fix `_t`:
+-  Name `structs` which are used as types with a post-fix `_t`:
 ```verilog
 typedef struct packed {
     logic [1:0]  rw;
@@ -85,11 +78,11 @@ typedef struct packed {
     module A (
         input logic [11:0] address_i
     );
-    
+
         csr_addr_t csr_addr;
-    
+
         assign csr_addr = csr_addr_t'(address_i);
-    
+
         always_comb begin
             if (csr_addr.priv_lvl == U_MODE) begin
                 // do something fancy with this signal
@@ -97,6 +90,25 @@ typedef struct packed {
         end
     endmodule
     ```
+- Consider using [EditorConfig](http://editorconfig.org/):
+
+```
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = off
+# 4 space indentation
+[*.{sv, svh, v, vhd}]
+indent_style = space
+indent_size = 4
+```
+There are plug-ins for almost any sane editor. The same example `.editorconfig` can also be found in this repository.
+
 ## Git Considerations
 
 - Do not push to master, if you want to add a feature do it in your branch
