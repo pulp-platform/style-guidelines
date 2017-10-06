@@ -20,11 +20,13 @@
 - Within an IP, use Interfaces to connect component instances whenever possible.
 - Use Interfaces at the top-level interface of the IP, but also provide a wrapper that “unrolls” the Interfaces into input and output ports.
 - Do not put overly large comment headers. Nevertheless, try to structure your HDL code, e.g.:
-```
-  // ------------------------------------
-  // CSR - Control and Status Registers
-  // ------------------------------------
-```
+
+    ```
+    // ------------------------------------
+    // CSR - Control and Status Registers
+    // ------------------------------------
+    ```
+
 - Specify memory map and integration rules while coding, using the `crazy88` (TODO: Link to Documentation) syntax.
 - Put `begin` statements on the same level as the block qualifier, for example:
 ```verilog
@@ -91,22 +93,23 @@ The intention behind this is to keep code which is closely related together (lik
     ```
 - Consider using [EditorConfig](http://editorconfig.org/):
 
-```
-# top-most EditorConfig file
-root = true
+    ```
+    # top-most EditorConfig file
+    root = true
 
-# Unix-style newlines with a newline ending every file
-[*]
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-max_line_length = off
-# 4 space indentation
-[*.{sv, svh, v, vhd}]
-indent_style = space
-indent_size = 4
-```
-There are plug-ins for almost any sane editor. The same example `.editorconfig` can also be found in this repository.
+    # Unix-style newlines with a newline ending every file
+    [*]
+    end_of_line = lf
+    insert_final_newline = true
+    trim_trailing_whitespace = true
+    max_line_length = off
+    # 4 space indentation
+    [*.{sv, svh, v, vhd}]
+    indent_style = space
+    indent_size = 4
+    ```
+
+    There are plug-ins for almost any sane editor. The same example `.editorconfig` can also be found in this repository.
 
 ## Git Considerations
 
