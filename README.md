@@ -6,12 +6,12 @@
 - Avoid `defines` and `ifdefs` as much as possible.
 - Don't use tabs, use spaces.
 - Use 4 spaces to open a new indentation level.
-- All signal and module names should be lower case with underscores as whitespace replacements (e.g.: `fetch_busy`).
+- All signal and module names should be *lower case with underscores* as whitespace replacements (e.g.: `fetch_busy`).
 - Instantiation of modules should be prefix with `i_`, e.g.: `i_prefetcher`
 - For port definitions keep a post-fix direction (`_o`, `_i`).
 - For active low signals put an additional (`_no`, `_ni`).
 - Denote output of ff with `_q` (output of ff) and the input with `_n` (next) or alternatively `_p` (present) and `_n` (next).
-- Do not use CamelCase!
+- Do not use `CamelCase`!
 
 ## Coding Style
 
@@ -119,19 +119,19 @@ As a variant, you can also put the end on its own line:
 - Consider using [EditorConfig](http://editorconfig.org/):
 
 ```
-# top-most EditorConfig file
-root = true
+    # top-most EditorConfig file
+    root = true
 
-# Unix-style newlines with a newline ending every file
-[*]
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-max_line_length = off
-# 4 space indentation
-[*.{sv, svh, v, vhd}]
-indent_style = space
-indent_size = 4
+    # Unix-style newlines with a newline ending every file
+    [*]
+    end_of_line = lf
+    insert_final_newline = true
+    trim_trailing_whitespace = true
+    max_line_length = off
+    # 4 space indentation
+    [*.{sv, svh, v, vhd}]
+    indent_style = space
+    indent_size = 4
 ```
 There are plug-ins for almost any sane editor. The same example `.editorconfig` can also be found in this repository.
 
@@ -168,5 +168,5 @@ For a detailed why and how please refer to one of the multiple [resources](https
 
 If you use `vi` for your commit message, consider to put the following snippet inside your `~/.vimrc`:
 ```
-autocmd Filetype gitcommit setlocal spell textwidth=72s
+    autocmd Filetype gitcommit setlocal spell textwidth=72s
 ```
