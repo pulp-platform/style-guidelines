@@ -17,7 +17,7 @@
 
 - Keep the files tidy. No superfluous line breaks, align ports on a common boundary.
 - Don't use tabs, use spaces. If you really want to use tabs then use them consistently.
-- Name dedicated signals wiring `module A` (output) with `module B` (input) `signal_a_b`
+- Name dedicated signals wiring `module foo` (output) with `module bar` (input) `signal_foo_bar`
 - Within an IP, use Interfaces to connect component instances whenever possible.
 - Use Interfaces at the top-level interface of the IP, but also provide a wrapper that “unrolls” the Interfaces into input and output ports.
 - Do not put overly larsge comment headers. Nevertheless, try to structure your HDL code, e.g.:
