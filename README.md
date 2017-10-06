@@ -17,16 +17,16 @@
 
 - Keep the files tidy. No superfluous line breaks, align ports on a common boundary.
 - Don't use tabs, use spaces. If you really want to use tabs then use them consistently.
-- Name dedicated signals wiring `module A` (output) with `module B` (input) `signal_a_b`
+- Name dedicated signals wiring `module A` (output) with `module B` (input) `signal_a_b`.
 - Within an IP, use Interfaces to connect component instances whenever possible.
 - Use Interfaces at the top-level interface of the IP, but also provide a wrapper that “unrolls” the Interfaces into input and output ports.
-- Do not put overly larsge comment headers. Nevertheless, try to structure your HDL code, e.g.:
+- Do not put overly large comment headers / banners. Nevertheless, try to structure your HDL code, e.g.:
 ```
   // ------------------------------------
   // CSR - Control and Status Registers
   // ------------------------------------
 ```
-- Specify memory map and integration rules while coding, using the `crazy88` (TODO: Link to Documentation) syntax
+- Specify memory map and integration rules while coding, using the `crazy88` (TODO: Link to Documentation) syntax.
 - Put `begin` statements on the same level as the block qualifier, for example:
 ```verilog
 module A (
@@ -44,7 +44,7 @@ module A (
     end
 endmodule
 ```
-- The exception to the former rule can be the begin of an `always` block where the `begin` can be placed on a new line, for example (K&R):
+- The exception to the former rule are `always` blocks, where the `begin` can be placed on a new line, for example (K&R):
 ```verilog
 module A (
     input logic flush_i
@@ -62,9 +62,36 @@ module A (
     end
 endmodule
 ```
-> The rational is that extra lines for `begin/else/end` carry no information at all. They even may prevent parts of the code to not have enough space on some screens. Process blocks on the other hand are more self-contained and multiple process blocks are not required to be visible at the same time.
-
-The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
+- For `case`, always use `begin` and `end` and follow the K&R style:
+```verilog
+case (foo_i)
+    8'h0 : begin
+        // case 0
+    end
+    8'h1 : begin
+        // case 1
+    end
+endcase
+```
+- For `if`-`else` chains, use K&R style:
+```verilog
+    if (foo_i) begin
+        // do stuff
+    end else if (bar_i) begin
+        // do some other stuff
+    end
+```
+As a variant, you can also put the end on its own line:
+```verilog
+    if (foo_i) begin
+        // do stuff
+    end
+    else if (bar_i) begin
+        // do some other stuff
+    end
+```
+> The rational for these alignment style rules is that extra lines for `begin/else/end` carry no information at all. They even may prevent parts of the code to not have enough space on some screens. Process blocks on the other hand are more self-contained and multiple process blocks are not required to be visible at the same time.
+> The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
 -  Name `structs` which are used as types with a post-fix `_t`:
 ```verilog
@@ -74,7 +101,22 @@ typedef struct packed {
     logic  [7:0] address;
 } csr_addr_t;
 ```
-    ```verilog
+- always name control blocks within a `generate`:
+```verilog
+generate
+    for (genvar i=0; i<10; i++) begin : ten_times_gen
+        // something to generate 10x
+    end // ten_times_gen
+
+    if (PARAM == 0) begin : no_param_gen
+        // something
+    end // no_param_gen
+    else begin : param_gen
+        // something else
+    end // param_gen
+endgenerate
+```
+<!--     ```verilog
     module A (
         input logic [11:0] address_i
     );
@@ -89,7 +131,7 @@ typedef struct packed {
             end
         end
     endmodule
-    ```
+    ``` -->
 - Consider using [EditorConfig](http://editorconfig.org/):
 
 ```
