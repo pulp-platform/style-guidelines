@@ -10,7 +10,7 @@
 - Instantiation of modules should be prefixed with `i_`, e.g.: `i_prefetcher`.
 - For port definitions keep a post-fix direction (`_o`, `_i`).
 - For active low signals put an additional (`_no`, `_ni`).
-- Denote output of ff with `_q` (output of ff) and the input with `_n` (next) or alternatively `_p` (present) and `_n` (next).
+- Denote output of a register with `_q` and its input with `_n` (next) or alternatively `_p` (present) and `_n` (next).
 
 ## Coding Style
 
