@@ -101,8 +101,9 @@
         end
     ```
 
-> The rationale is that extra lines for `begin/else/end` carry no information at all. They even may prevent parts of the code to not have enough space on some screens. Process blocks on the other hand are more self-contained and multiple process blocks are not required to be visible at the same time.
-> The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
+    > The rationale is that extra lines for `begin/else/end` carry no information at all. They even may prevent parts of the code to not have enough space on some screens. Process blocks on the other hand are more self-contained and multiple process blocks are not required to be visible at the same time.
+    > The intention behind this is to keep code which is closely related together (like the code in an `always` block). It then should easily fit on a single screen.
+
 - Give generics a meaningful type e.g.: `parameter int unsigned ASID_WIDTH = 1`. The default type is a signed integer which in most of the time does not make an awful lot of sense for hardware.
 - Always name control blocks within a `generate`:
 
