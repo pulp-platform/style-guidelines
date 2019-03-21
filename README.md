@@ -3,16 +3,16 @@
 ## TL;DR - Absolute Minimum
 
 - Use the `.sv` extension for SystemVerilog files and the `.svh` extension for SystemVerilog files that are `` `include``d.
-- Use only ASCII characters with Unix-style line endings (i.e., LF aka `\n`).
-- Wrap code at 100 characters per line.
-- Indent with two spaces per level. Do not use tabs.
-- Delete trailing whitespace at the end of every line. Delete trailing newlines at the end of every file. Every file ends with *exactly* one LF.
-- Use `begin` and `end` unless a statement fits on a single line. Put the `begin` on the same line as the condition and the `end` on its own line (where it may be followed by an `else`, see below).
-- Prefix module instances with `i_`, e.g.: `i_prefetcher`.
-- Append the direction to port names: `_o`, `_i`, `_io`.
-- For active-low signals put an additional `n`: `n` for internal signals, `_no`, `_ni`, `_nio` for ports.
-- Denote output of a register with `_q` and the input with `_d`. When pipelining a signal, append a number starting at 2, e.g., `_q2`.
-- Avoid `defines` and `ifdefs` **as much as possible**. Use parameters and packages instead.
+- Use **only ASCII characters** with **Unix-style line endings** (i.e., LF aka `\n`).
+- Wrap code at **100 characters per line**.
+- Indent with **two spaces** per level. **Do not use tabs.**
+- **Delete trailing whitespace** at the end of every line. **Delete trailing newlines** at the end of every file. **Every file ends with *exactly* one LF.**
+- Use `begin` and `end` unless a statement fits on a single line. Put the **`begin` on the same line as the condition** and the **`end` on its own line** (where it may be followed by an `else`, see below).
+- **Prefix module instances with `i_`**, e.g.: `i_prefetcher`.
+- **Append the direction to port names: `_o`, `_i`, `_io`.**
+- For **active-low signals** put an additional **`n`**: `n` for internal signals, `_no`, `_ni`, `_nio` for ports.
+- Denote **output** of a **register** with **`_q`** and the **input** with **`_d`**. When pipelining a signal, append a number starting at 2, e.g., `_q2`.
+- **Avoid `defines` and `ifdefs` as much as possible.** Use parameters and packages instead.
 - If one file deviates from this style but consistently uses a different style, stick to the other style unless you are changing almost all code of that file.
 
 ## Naming
