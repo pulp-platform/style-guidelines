@@ -109,13 +109,13 @@
 - Name `generate` blocks with `begin : gen_name`. Do not put the name of the generate into a comment after the end; that's redundant. Do not use the `generate` keyword; it's redundant. For example:
 
     ```verilog
-    for (genvar i=0; i<10; i++) begin : gen_ten_times
+    for (genvar i=0; i < 10; i++) begin : gen_ten_times
       // something to generate 10x
     end
 
     if (PARAM == 0) begin : gen_no_param
       // something
-    end else begin: gen_param
+    end else begin : gen_param
       // something else
     end // param_gen
     ```
