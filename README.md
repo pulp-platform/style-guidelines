@@ -12,6 +12,7 @@
 - **Append the direction to port names: `_o`, `_i`, `_io`.**
 - For **active-low signals** put an additional **`n`**: `n` for internal signals, `_no`, `_ni`, `_nio` for ports.
 - Denote **output** of a **register** with **`_q`** and the **input** with **`_d`**. When pipelining a signal, append a number starting at 2, e.g., `_q2`.
+- **All clock signals begin with `clk`.** The main system clock for a design is `clk`; the main clock input of a module is `clk_i`. All further clocks have a unique identifier appended (e.g., `clk_dram`) and all signals in that clock domain start with that identifier (e.g., `dram_addr`).
 - **Avoid `defines` and `ifdefs` as much as possible.** Use parameters and packages instead.
 - If one file deviates from this style but consistently uses a different style, stick to the other style unless you are changing almost all code of that file.
 
