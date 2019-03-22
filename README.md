@@ -133,15 +133,11 @@
     ```
     ```verilog
     module A (
-      input logic [11:0] address_i
+      input csr_addr_t csr_addr_i
     );
 
-      csr_addr_t csr_addr;
-
-      assign csr_addr = csr_addr_t'(address_i);
-
       always_comb begin
-        if (csr_addr.priv_lvl == PrivUser) begin
+        if (csr_addr_i.priv_lvl == PrivUser) begin
           // do something fancy with this signal
         end
       end
