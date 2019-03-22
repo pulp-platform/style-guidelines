@@ -117,7 +117,7 @@
       // something
     end else begin : gen_param
       // something else
-    end // param_gen
+    end
     ```
     > This simplifies synthesis and back-end scripts significantly and make them more vendor independent.
 
