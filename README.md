@@ -24,7 +24,7 @@
 | Signals                    | `lower_snake_case`     |
 | Variable, functions, tasks | `lower_snake_case`     |
 | `` `define``               | `ALL_CAPS`             |
-| Tunable Parameters         | `CamelCase`            |
+| Tunable Parameters         | `UpperCamelCase`       |
 | Constants                  | `ALL_CAPS`             |
 | Enumerated types           | `lower_snake_case_e`   |
 | Other `typedef`s           | `lower_snake_case_t`   |
