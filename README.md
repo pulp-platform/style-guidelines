@@ -144,6 +144,14 @@
     endmodule
     ```
 
+- Do not compare single-bit signals to `0` or `1`; that's redundant. Instead simply use the signal and unary logical negation, as in
+
+    ```verilog
+    if (valid_i && !ready_i) begin
+      state_d = Stall;
+    end
+    ```
+
 - Use [EditorConfig](http://editorconfig.org/) to make your editor consistently apply a style:
 
     ```
