@@ -152,6 +152,19 @@
     end
     ```
 
+- Use *logical* operators in *conditional* statements and *bitwise* operators when assigning signals or ports. For example:
+
+    ```verilog
+    always_comb begin
+      cnt_d = cnt_q;
+      if (push && !full) begin
+        cnt_d++;
+      end
+    end
+
+    assign flush = pop & ~empty;
+    ```
+
 - Use [EditorConfig](http://editorconfig.org/) to make your editor consistently apply a style:
 
     ```
