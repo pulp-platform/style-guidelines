@@ -17,3 +17,6 @@ indent_size = 2
 [README.md]
 max_line_length = 0
 indent_size = 2
+
+[CONTRIBUTING.md]
+max_line_length = 76
