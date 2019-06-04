@@ -13,3 +13,7 @@ max_line_length = 100
 [*.{sv, svh, v, vhd}]
 indent_style = space
 indent_size = 2
+
+[README.md]
+max_line_length = 0
+indent_size = 2
